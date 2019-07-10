@@ -7,13 +7,18 @@ from django.utils.translation import ugettext_lazy as _
 
 
 def project_filepath(instance, filename):
-    """file will be upload to MEDIA_ROOT/projects/fullName/<filename>"""
-    return f"projects/{instance.fullName}/{filename}"
+    """file will be upload to MEDIA_ROOT/projects/name/<filename>"""
+    return f"projects/{instance.name}/{filename}"
 
 
 def job_filepath(instance, filename):
     """file will be upload to MEDIA_ROOT/jobs/name/<filename>"""
-    return f"jobs/{instance.name}/{filename}"
+    return f"jobs/{instance.project.name}_{instance.name}/{filename}"
+
+
+def build_filepath(instance, filename):
+    """file will be upload to MEDIA_ROOT/build/name/<filename>"""
+    return f"build/{instance.job.project.name}_{instance.job.name}_{instance.build_id}/{filename}"
 
 
 class Project(models.Model):
@@ -88,6 +93,7 @@ class Build(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name=_("描述"))
     start_time = models.DateTimeField(verbose_name=_("开始时间"))
     duration = models.PositiveSmallIntegerField(verbose_name=_("构建时长"))
+    consoleText = models.FileField(upload_to=build_filepath, verbose_name=_("构建console信息"))
     created_at = models.DateTimeField(db_index=True, auto_now_add=True, verbose_name=_("创建时间"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("更新时间"))
 
