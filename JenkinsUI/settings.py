@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'data.apps.DataConfig',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'HOST': '192.168.91.240',
         'PORT': '3306',
         'ATOMIC_REQUESTS': True,
-        'CONN_MAX_AGE': '300',
+        'CONN_MAX_AGE': 300,
     }
 }
 
