@@ -101,7 +101,7 @@ class Build(models.Model):
         verbose_name = "构建"
         verbose_name_plural = verbose_name
         unique_together = ("job", "build_id")  # job名与构建ID构成联合唯一键
-        ordering = ("name", "created_at")
+        ordering = ("build_id", "created_at")
 
     def __str__(self):
         return f"{self.job.name}_{self.fullDisplayName}"
