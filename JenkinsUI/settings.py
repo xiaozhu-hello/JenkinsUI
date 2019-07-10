@@ -142,3 +142,17 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = '/media/'
+
+# SimpleUI配置
+SIMPLEUI_ICON = {
+    "Jenkins数据": "fab fa-jenkins",
+    "项目": "fas fa-project-diagram",
+    "Job": "fas fa-tasks",
+    "Job参数": "fas fa-align-right",
+    "构建": "fas fa-wrench",
+    "构建参数": "fas fa-tools",
+}
+
+SIMPLEUI_HOME_INFO = False
+
+SIMPLEUI_ANALYSIS = False
